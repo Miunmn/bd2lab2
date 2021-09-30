@@ -1,8 +1,10 @@
-#include "lib.h"
-
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include <limits>
 #define MAX_AUX 5
 
-//" registro {{{1 
 struct Registro{
   int codigo;
   char nombre[20];
@@ -12,7 +14,7 @@ struct Registro{
   int next = -1;
   
 };
-//" templates {{{1
+
 template<typename T>
 std::fstream& readBinaryFile(std::fstream& stream, T& record){
   stream.read((char*)& record, sizeof(record));
@@ -24,7 +26,6 @@ std::fstream& appendInBinaryFile(std::fstream& stream, T& record){
   return stream;
 }
 
-//" sequentialFile {{{1
 class SequentialFile{
   public:
     SequentialFile(std::string fileName, std::string auxName){
